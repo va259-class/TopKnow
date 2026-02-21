@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using TopKnow.Entities.Abstractions;
+using TopKnow.Entities.Main;
 
 namespace TopKnow.Entities.Game;
 
@@ -15,6 +16,10 @@ public class Question : EntityBase
     [MaxLength(128)]
     public string Title { get; set; }
     public List<Answer> Answers { get; set; }
+    public Guid TypeId { get; set; }
+
+    [ForeignKey(nameof(TypeId))]
+    public LookUp Type { get; set; }
 }
 
 public class Answer

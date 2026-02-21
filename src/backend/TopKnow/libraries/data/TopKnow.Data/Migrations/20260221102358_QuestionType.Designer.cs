@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TopKnow.Data.Context;
 
@@ -11,9 +12,11 @@ using TopKnow.Data.Context;
 namespace TopKnow.Data.Migrations
 {
     [DbContext(typeof(TopKnowContext))]
-    partial class TopKnowContextModelSnapshot : ModelSnapshot
+    [Migration("20260221102358_QuestionType")]
+    partial class QuestionType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
