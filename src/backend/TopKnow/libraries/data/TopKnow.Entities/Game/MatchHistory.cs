@@ -9,7 +9,7 @@ public class MatchHistory : EntityBase
 {
     public Guid MatchId { get; set; }
     public Guid QuestionId { get; set; }
-    public Guid? WinnerUserId { get; set; }
+    public Guid? WinnerPlayerId { get; set; }
 
     [ForeignKey(nameof(MatchId))]
     public Match Match { get; set; }
@@ -17,8 +17,8 @@ public class MatchHistory : EntityBase
     [ForeignKey(nameof(QuestionId))]
     public Question Question { get; set; }
 
-    [ForeignKey(nameof(WinnerUserId))]
-    public User WinnerUser { get; set; }
+    [ForeignKey(nameof(WinnerPlayerId))]
+    public Player WinnerUser { get; set; }
 }
 
 

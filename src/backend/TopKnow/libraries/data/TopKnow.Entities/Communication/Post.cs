@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using TopKnow.Entities.Abstractions;
+using TopKnow.Entities.Main;
 
 namespace TopKnow.Entities.Communication;
 
@@ -16,4 +17,10 @@ public class Post : EntityBase
     [MaxLength(1024)]
     [MinLength(16)]
     public string Content { get; set; }
+
+    [Required]
+    public Guid UserId { get; set; }
+
+    [ForeignKey(nameof(UserId))]
+    public User User { get; set; }
 }

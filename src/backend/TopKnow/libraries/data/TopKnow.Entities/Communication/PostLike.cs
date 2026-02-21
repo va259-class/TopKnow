@@ -6,7 +6,7 @@ using TopKnow.Entities.Main;
 
 namespace TopKnow.Entities.Communication;
 
-[Table("Comments", Schema = "Communication")]
+[Table("PostLikes", Schema = "Communication")]
 public class PostLike : EntityBase
 {
     [Required]

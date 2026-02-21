@@ -1,0 +1,12 @@
+# Yeni Migration Oluşturmak İçin:
+Add-Migration [Your Migration Name] -P TopKnow.Data -C TopKnowContext -S TopKnow.Management.Api
+
+# Değişikliklerin Database'e Yansıması İçin
+Update-Database -P TopKnow.Data -Context TopKnowContext -S TopKnow.Management.Api
+
+
+
+
+# Herhangi Bir Migration Henüz database'e Yansımadı ise Geri Kaldırmak İçin
+
+Remove-Migration -P TopKnow.Data -C TopKnowContext -S TopKnow.Management.Api

@@ -9,13 +9,13 @@ namespace TopKnow.Entities.Game;
 public class ScoreBoard : EntityBase
 {
     [Required]
-    public Guid UserId { get; set; }
+    public Guid PlayerId { get; set; }
     public int Score { get; set; }
     [Required]
     public Guid BoardTypeId { get; set; }
 
-    [ForeignKey(nameof(UserId))]
-    public User User { get; set; }
+    [ForeignKey(nameof(PlayerId))]
+    public Player User { get; set; }
 
     [ForeignKey(nameof(BoardTypeId))]
     public LookUp BoardType { get; set; }
