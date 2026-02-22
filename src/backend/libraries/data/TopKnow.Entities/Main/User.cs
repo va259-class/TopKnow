@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using TopKnow.Common.Enums;
 using TopKnow.Entities.Abstractions;
 
 namespace TopKnow.Entities.Main;
@@ -16,4 +17,6 @@ public class User : EntityBase
     [MaxLength(32)]
     [Required]
     public string DisplayName { get; set; }
+
+    public UserType Type { get; set; }
 }

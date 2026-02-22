@@ -1,6 +1,0 @@
-@TopKnow.Management.Api_HostAddress = http://localhost:5129
-
-GET {{TopKnow.Management.Api_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

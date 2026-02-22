@@ -10,4 +10,8 @@
 		<PackageReference Include="MediatR" Version="13.1.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\..\data\TopKnow.Data\TopKnow.Data.csproj" />
+	</ItemGroup>
+
 </Project>

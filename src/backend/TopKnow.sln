@@ -53,6 +53,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopKnow.Modules.External.Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopKnow.Modules.External.Queries", "libraries\modules\external\queries\TopKnow.Modules.External.Queries\TopKnow.Modules.External.Queries.csproj", "{51216757-B133-4F56-8125-831E6BFBC339}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "commands", "commands", "{44F6D652-5841-45B6-A7E2-8D53D547E347}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "queries", "queries", "{951CE9B3-3D04-44C3-A236-CF0B19FB4B04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopKnow.Modules.PlayGround", "libraries\modules\playground\TopKnow.Modules.PlayGround\TopKnow.Modules.PlayGround.csproj", "{EA04116A-5C4A-4E9B-9792-107A4198C583}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopKnow.Modules.PlayGround.Commands", "libraries\modules\playground\commands\TopKnow.Modules.PlayGround.Commands\TopKnow.Modules.PlayGround.Commands.csproj", "{C79F4A63-E39F-4BB9-B7BE-34D8FBC7CF20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopKnow.Modules.PlayGround.Queries", "libraries\modules\playground\queries\TopKnow.Modules.PlayGround.Queries\TopKnow.Modules.PlayGround.Queries.csproj", "{C64D0F1A-101A-4E75-AEA9-84A455291B37}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -115,6 +125,18 @@ Global
 		{51216757-B133-4F56-8125-831E6BFBC339}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51216757-B133-4F56-8125-831E6BFBC339}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51216757-B133-4F56-8125-831E6BFBC339}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA04116A-5C4A-4E9B-9792-107A4198C583}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA04116A-5C4A-4E9B-9792-107A4198C583}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA04116A-5C4A-4E9B-9792-107A4198C583}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA04116A-5C4A-4E9B-9792-107A4198C583}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C79F4A63-E39F-4BB9-B7BE-34D8FBC7CF20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C79F4A63-E39F-4BB9-B7BE-34D8FBC7CF20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C79F4A63-E39F-4BB9-B7BE-34D8FBC7CF20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C79F4A63-E39F-4BB9-B7BE-34D8FBC7CF20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C64D0F1A-101A-4E75-AEA9-84A455291B37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C64D0F1A-101A-4E75-AEA9-84A455291B37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C64D0F1A-101A-4E75-AEA9-84A455291B37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C64D0F1A-101A-4E75-AEA9-84A455291B37}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -143,6 +165,11 @@ Global
 		{9CDBD4F1-A019-4E94-858E-3728C10A40AB} = {5E02AA9A-0777-441C-8FC8-C41E4E22A6F1}
 		{7CDEBDAA-8BF4-40D9-AB6A-867457E5FF85} = {D71B9287-9C03-46AC-96EC-09D1CEF9247B}
 		{51216757-B133-4F56-8125-831E6BFBC339} = {533554FB-54C7-4B03-989D-FB7E50A08F28}
+		{44F6D652-5841-45B6-A7E2-8D53D547E347} = {FE4F757D-84C4-4A3A-926D-74918499A207}
+		{951CE9B3-3D04-44C3-A236-CF0B19FB4B04} = {FE4F757D-84C4-4A3A-926D-74918499A207}
+		{EA04116A-5C4A-4E9B-9792-107A4198C583} = {FE4F757D-84C4-4A3A-926D-74918499A207}
+		{C79F4A63-E39F-4BB9-B7BE-34D8FBC7CF20} = {44F6D652-5841-45B6-A7E2-8D53D547E347}
+		{C64D0F1A-101A-4E75-AEA9-84A455291B37} = {951CE9B3-3D04-44C3-A236-CF0B19FB4B04}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2395B4B4-69D3-4268-B890-6087BEBDCB0D}
