@@ -43,6 +43,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopKnow.Modules.Management.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopKnow.Modules.Common", "libraries\modules\TopKnow.Modules.Common\TopKnow.Modules.Common.csproj", "{DFB6918F-6F67-4EAB-ACFE-2C6F20BB69B2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "commands", "commands", "{D71B9287-9C03-46AC-96EC-09D1CEF9247B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "queries", "queries", "{533554FB-54C7-4B03-989D-FB7E50A08F28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopKnow.Modules.External", "libraries\modules\external\TopKnow.Modules.External\TopKnow.Modules.External.csproj", "{9CDBD4F1-A019-4E94-858E-3728C10A40AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopKnow.Modules.External.Commands", "libraries\modules\external\commands\TopKnow.Modules.External.Commands\TopKnow.Modules.External.Commands.csproj", "{7CDEBDAA-8BF4-40D9-AB6A-867457E5FF85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopKnow.Modules.External.Queries", "libraries\modules\external\queries\TopKnow.Modules.External.Queries\TopKnow.Modules.External.Queries.csproj", "{51216757-B133-4F56-8125-831E6BFBC339}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +103,18 @@ Global
 		{DFB6918F-6F67-4EAB-ACFE-2C6F20BB69B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFB6918F-6F67-4EAB-ACFE-2C6F20BB69B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFB6918F-6F67-4EAB-ACFE-2C6F20BB69B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CDBD4F1-A019-4E94-858E-3728C10A40AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CDBD4F1-A019-4E94-858E-3728C10A40AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CDBD4F1-A019-4E94-858E-3728C10A40AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CDBD4F1-A019-4E94-858E-3728C10A40AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CDEBDAA-8BF4-40D9-AB6A-867457E5FF85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CDEBDAA-8BF4-40D9-AB6A-867457E5FF85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CDEBDAA-8BF4-40D9-AB6A-867457E5FF85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CDEBDAA-8BF4-40D9-AB6A-867457E5FF85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51216757-B133-4F56-8125-831E6BFBC339}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51216757-B133-4F56-8125-831E6BFBC339}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51216757-B133-4F56-8125-831E6BFBC339}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51216757-B133-4F56-8125-831E6BFBC339}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -116,6 +138,11 @@ Global
 		{0B2D03B2-EC26-479A-9AD8-56B04DACB1BC} = {9177B8AC-3898-4327-B936-A9EC017D6E6B}
 		{F55BBA65-096D-4051-ADB9-B822397DEB77} = {BAC506A3-6D22-4141-9FB3-6E4037984938}
 		{DFB6918F-6F67-4EAB-ACFE-2C6F20BB69B2} = {E5A4D3AC-FF18-4A4B-98F3-E3346623C556}
+		{D71B9287-9C03-46AC-96EC-09D1CEF9247B} = {5E02AA9A-0777-441C-8FC8-C41E4E22A6F1}
+		{533554FB-54C7-4B03-989D-FB7E50A08F28} = {5E02AA9A-0777-441C-8FC8-C41E4E22A6F1}
+		{9CDBD4F1-A019-4E94-858E-3728C10A40AB} = {5E02AA9A-0777-441C-8FC8-C41E4E22A6F1}
+		{7CDEBDAA-8BF4-40D9-AB6A-867457E5FF85} = {D71B9287-9C03-46AC-96EC-09D1CEF9247B}
+		{51216757-B133-4F56-8125-831E6BFBC339} = {533554FB-54C7-4B03-989D-FB7E50A08F28}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2395B4B4-69D3-4268-B890-6087BEBDCB0D}

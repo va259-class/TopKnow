@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\commands\TopKnow.Modules.External.Commands\TopKnow.Modules.External.Commands.csproj" />
+    <ProjectReference Include="..\queries\TopKnow.Modules.External.Queries\TopKnow.Modules.External.Queries.csproj" />
+  </ItemGroup>
+
+</Project>
