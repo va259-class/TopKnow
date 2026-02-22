@@ -7,19 +7,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "hostings", "hostings", "{90
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libraries", "libraries", "{E724F67A-6E19-4F12-B5A8-8475435BA182}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopKnow.Management.Api", "hostings\TopKnow.Management.Api\TopKnow.Management.Api.csproj", "{3183F171-4273-4319-90BD-88D0BEA4000C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopKnow.Management.Api", "hostings\TopKnow.Management.Api\TopKnow.Management.Api.csproj", "{3183F171-4273-4319-90BD-88D0BEA4000C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopKnow.PlayGround.Api", "hostings\TopKnow.PlayGround.Api\TopKnow.PlayGround.Api.csproj", "{C89DEB72-D15B-4D27-B1EA-BAD1F05A0158}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopKnow.PlayGround.Api", "hostings\TopKnow.PlayGround.Api\TopKnow.PlayGround.Api.csproj", "{C89DEB72-D15B-4D27-B1EA-BAD1F05A0158}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopKnow.Data", "libraries\data\TopKnow.Data\TopKnow.Data.csproj", "{77C8D25F-8AAB-4BA4-B11A-3035A6244452}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopKnow.Data", "libraries\data\TopKnow.Data\TopKnow.Data.csproj", "{77C8D25F-8AAB-4BA4-B11A-3035A6244452}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "data", "data", "{20382241-414F-4E5B-B176-5804D85DE962}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopKnow.Entities", "libraries\data\TopKnow.Entities\TopKnow.Entities.csproj", "{8060B43D-D96C-4A20-82B1-B6A92A918460}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopKnow.Entities", "libraries\data\TopKnow.Entities\TopKnow.Entities.csproj", "{8060B43D-D96C-4A20-82B1-B6A92A918460}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "modules", "modules", "{E5A4D3AC-FF18-4A4B-98F3-E3346623C556}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopKnow.Common", "libraries\TopKnow.Common\TopKnow.Common.csproj", "{08687B83-2819-4167-83E1-5BD33F948DDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopKnow.Common", "libraries\TopKnow.Common\TopKnow.Common.csproj", "{08687B83-2819-4167-83E1-5BD33F948DDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopKnow.Management.Client", "hostings\TopKnow.Management.Client\TopKnow.Management.Client.csproj", "{289683F1-1AA2-45B3-B0D5-A9FF178DDFEE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,10 @@ Global
 		{08687B83-2819-4167-83E1-5BD33F948DDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08687B83-2819-4167-83E1-5BD33F948DDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08687B83-2819-4167-83E1-5BD33F948DDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{289683F1-1AA2-45B3-B0D5-A9FF178DDFEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{289683F1-1AA2-45B3-B0D5-A9FF178DDFEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{289683F1-1AA2-45B3-B0D5-A9FF178DDFEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{289683F1-1AA2-45B3-B0D5-A9FF178DDFEE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +65,7 @@ Global
 		{8060B43D-D96C-4A20-82B1-B6A92A918460} = {20382241-414F-4E5B-B176-5804D85DE962}
 		{E5A4D3AC-FF18-4A4B-98F3-E3346623C556} = {E724F67A-6E19-4F12-B5A8-8475435BA182}
 		{08687B83-2819-4167-83E1-5BD33F948DDC} = {E724F67A-6E19-4F12-B5A8-8475435BA182}
+		{289683F1-1AA2-45B3-B0D5-A9FF178DDFEE} = {90D375B6-ACBF-4391-A48F-F86F9A309A30}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2395B4B4-69D3-4268-B890-6087BEBDCB0D}
