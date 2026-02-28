@@ -18,24 +18,28 @@ public class UserController : ControllerBase
     }
 
     [HttpGet("admins")]
-    public IActionResult GetAdminUsers([FromQuery] PagedQueryParameter parameter)
+    public async Task<IActionResult> GetAdminUsers([FromQuery] PagedQueryParameter parameter, CancellationToken cancellationToken)
     {
         var request = new GetPagedAdminUsersRequest(parameter);
-        var result = mediator.Send(request, CancellationToken.None);
-        return Ok(result);
+        var result = await mediator.Send(request, cancellationToken);
+        if (result.IsSuccess)
+        {
+            return Ok(result);
+        }
+        return BadRequest(result.Error);
     }
 
     [HttpGet("players")]
-    public IActionResult GetPlayerUsers([FromQuery] PagedUserRequestInput parameter)
+    public IActionResult GetPlayerUsers([FromQuery] PagedUserRequestInput parameter, CancellationToken cancellationToken)
     {
-        var result = mediator.Send(null, CancellationToken.None);
+        var result = mediator.Send(null, cancellationToken);
         return Ok(result);
     }
 
     [HttpGet("external-users")]
-    public IActionResult GetApiUsers([FromQuery] PagedQueryParameter parameter)
+    public IActionResult GetApiUsers([FromQuery] PagedQueryParameter parameter, CancellationToken cancellationToken)
     {
-        var result = mediator.Send(null, CancellationToken.None);
+        var result = mediator.Send(null, cancellationToken);
         return Ok(result);
     }
 }
