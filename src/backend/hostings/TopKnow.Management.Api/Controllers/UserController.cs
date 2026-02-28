@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using TopKnow.Common.Concretes;
 using TopKnow.Modules.Management.Queries.Users;
-using TopKnow.Modules.Management.RequestInputs;
 
 namespace TopKnow.Management.Api.Controllers;
 
@@ -30,10 +29,15 @@ public class UserController : ControllerBase
     }
 
     [HttpGet("players")]
-    public IActionResult GetPlayerUsers([FromQuery] PagedUserRequestInput parameter, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetPlayerUsers([FromQuery] PagedUserRequestInput parameter, CancellationToken cancellationToken)
     {
-        var result = mediator.Send(null, cancellationToken);
-        return Ok(result);
+        var request = new GetPagedPlayersRequest(parameter);
+        var result = await mediator.Send(request, cancellationToken);
+        if (result.IsSuccess)
+        {
+            return Ok(result);
+        }
+        return BadRequest(result.Error);
     }
 
     [HttpGet("external-users")]
