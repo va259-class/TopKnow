@@ -1,6 +1,8 @@
 using TopKnow.Modules.Management.Extensions;
 using TopKnow.Data.Extensions;
 using TopKnow.Common.Configurations;
+using TopKnow.Management.Api.Middlewares;
+using TopKnow.Management.Api.Extensions;
 
 namespace TopKnow.Management.Api;
 
@@ -14,6 +16,7 @@ public class Program
         builder.Services.AddSwaggerGen();
         builder.Services.AddData(builder.Configuration);
         builder.Services.AddManagement();
+        builder.Services.AddSecurityHeaders(builder.Configuration);
 
         var app = builder.Build();
 
@@ -24,8 +27,10 @@ public class Program
         }
 
         app.UseHttpsRedirection();
+        app.UseMiddleware<SecurityHeaderMiddleware>();
         app.UseAuthorization();
         app.MapControllers();
+
         app.Run();
     }
 }

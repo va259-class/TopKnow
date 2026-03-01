@@ -15,14 +15,6 @@ public class GetPagedAdminUsersRequest : IRequest<Result<List<AdminUserRequestOu
 {
     public GetPagedAdminUsersRequest(PagedQueryParameter input)
     {
-        if (input.Page == 0)
-        {
-            input.Page = 1;
-        }
-        if (input.Size == 0)
-        {
-            input.Size = 15;
-        }
         Input = input;
     }
 
@@ -40,7 +32,15 @@ internal class GetPagedAdminUsersQueryHandler : IRequestHandler<GetPagedAdminUse
     }
     public async Task<Result<List<AdminUserRequestOutput>>> Handle(GetPagedAdminUsersRequest request, CancellationToken cancellationToken)
     {
-        var users = await context.Users.Where(f => f.Type == UserType.Admin && !f.IsDeleted)
+		if (request.Input.Page <= 0)
+		{
+			return Result<List<AdminUserRequestOutput>>.Failure(new Error(ErrorCodes.INVALID_PARAMETER, "Page should be a positive number"));
+		}
+		if (request.Input.Size <= 0 || request.Input.Size > 50)
+		{
+			return Result<List<AdminUserRequestOutput>>.Failure(new Error(ErrorCodes.INVALID_PARAMETER, "Size should be between 1-50"));
+		}
+		var users = await context.Users.Where(f => f.Type == UserType.Admin && !f.IsDeleted)
                                        .Select(s => new AdminUserRequestOutput(s.Id, s.DisplayName))
                                        .Skip((request.Input.Page - 1) * request.Input.Size)
                                        .Take(request.Input.Size)
@@ -48,7 +48,7 @@ internal class GetPagedAdminUsersQueryHandler : IRequestHandler<GetPagedAdminUse
 
         if (users.Count == 0)
         {
-            return Result<List<AdminUserRequestOutput>>.Failure(new Error(ErrorCodes.NOT_FOUND, "No admin found"));
+            return Result<List<AdminUserRequestOutput>>.Empty();
         }
 
         return Result<List<AdminUserRequestOutput>>.Success(users);

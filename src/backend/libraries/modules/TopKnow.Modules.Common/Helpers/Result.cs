@@ -15,6 +15,7 @@ public class Result
 
     public static Result Success() => new Result(true, null);
     public static Result Failure(Error error) => new Result(false, error);
+    public static Result Empty() => new Result(false, null);
 }
 
 public class Result<T> : Result
@@ -30,8 +31,13 @@ public class Result<T> : Result
         return new Result<T>(value, true, null);
     }
 
-    public static new Result<T> Failure(Error error)
-    {
-        return new Result<T>(default, false, error);
-    }
+	public static new Result<T> Failure(Error error)
+	{
+		return new Result<T>(default, false, error);
+	}
+
+	public static new Result<T> Empty()
+	{
+		return new Result<T>(default, false, null);
+	}
 }

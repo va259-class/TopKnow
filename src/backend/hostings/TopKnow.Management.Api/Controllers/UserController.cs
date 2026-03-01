@@ -7,7 +7,7 @@ namespace TopKnow.Management.Api.Controllers;
 
 [ApiController]
 [Route("api/users")]
-public class UserController : ControllerBase
+public class UserController : TopKnowController
 {
     private readonly IMediator mediator;
 
@@ -21,11 +21,7 @@ public class UserController : ControllerBase
     {
         var request = new GetPagedAdminUsersRequest(parameter);
         var result = await mediator.Send(request, cancellationToken);
-        if (result.IsSuccess)
-        {
-            return Ok(result);
-        }
-        return BadRequest(result.Error);
+        return ToResult(result);
     }
 
     [HttpGet("players")]
@@ -33,12 +29,8 @@ public class UserController : ControllerBase
     {
         var request = new GetPagedPlayersRequest(parameter);
         var result = await mediator.Send(request, cancellationToken);
-        if (result.IsSuccess)
-        {
-            return Ok(result);
-        }
-        return BadRequest(result.Error);
-    }
+		return ToResult(result);
+	}
 
     [HttpGet("external-users")]
     public IActionResult GetApiUsers([FromQuery] PagedQueryParameter parameter, CancellationToken cancellationToken)
