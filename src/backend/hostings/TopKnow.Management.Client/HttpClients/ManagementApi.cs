@@ -1,4 +1,6 @@
-﻿using System.Text.Json;
+﻿using System.Net;
+using System.Text.Json;
+using TopKnow.Management.Client.Helpers;
 
 namespace TopKnow.Management.Client.HttpClients;
 
@@ -11,15 +13,24 @@ public class ManagementApi
 		this.httpClient = httpClient;
 	}
 
-	public async Task<T> SendGetRequest<T>(string url)
+	public async Task<Result<T>> SendGetRequest<T>(string url)
 	{
 		var response = await httpClient.GetAsync(url);
         if (!response.IsSuccessStatusCode)
         {
 			return default;
         }
-		var content = await response.Content.ReadAsStringAsync();
-		return JsonSerializer.Deserialize<T>(content); //TODO: value null geldiği için sayfaya yansıtılamadı
+
+        if (response.StatusCode == HttpStatusCode.NoContent)
+        {
+			return new Result<T> { Error = new Error("0001", "Empty Response") };
+        }
+        var content = await response.Content.ReadAsStringAsync();
+		var jsonSettings = new JsonSerializerOptions 
+		{ 
+			PropertyNamingPolicy = JsonNamingPolicy.CamelCase 
+		};
+		return JsonSerializer.Deserialize<Result<T>>(content, jsonSettings); //TODO: value null geldiği için sayfaya yansıtılamadı
 	}
 
 	public Task SendPostRequest<T>(string url)

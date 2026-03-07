@@ -9,6 +9,6 @@ public class Result<T> : Result
 
 public class Result
 {
-	public bool IsSuccess { get; }
-	public Error Error { get; }
+	public bool IsSuccess { get; set; }
+	public Error Error { get; set; }
 }

@@ -15,8 +15,8 @@ namespace TopKnow.Management.Client.Controllers
 		}
         public async Task<IActionResult> Admins()
 		{
-			var admins = await managementApi.SendGetRequest<Result<List<AdminUserRequestOutput>>>("api/users/admins?Page=1&Size=10");
-			return View();
+			var admins = await managementApi.SendGetRequest<List<AdminUserRequestOutput>>("api/users/admins?Page=1&Size=10");
+			return View(admins);
 		}
 
 		public IActionResult Players()
