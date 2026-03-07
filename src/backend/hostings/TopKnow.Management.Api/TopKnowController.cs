@@ -6,7 +6,7 @@ namespace TopKnow.Management.Api;
 public abstract class TopKnowController : ControllerBase
 {
 	[NonAction]
-	protected IActionResult ToResult(Result result)
+	protected IActionResult AsResult(Result result)
 	{
 		if (result.IsSuccess)
 		{
@@ -20,7 +20,7 @@ public abstract class TopKnowController : ControllerBase
 	}
 
 	[NonAction]
-	protected IActionResult ToResult<T>(Result<T> result)
+	protected IActionResult AsResult<T>(Result<T> result)
 	{
 		if (result.IsSuccess)
 		{

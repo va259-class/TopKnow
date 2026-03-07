@@ -1,7 +1,9 @@
 ﻿@model Result<List<AdminUserRequestOutput>>
 
-<h3>Yetkili Kullanıcılar</h3>
-
+<div class="d-flex justify-content-between">
+    <h3>Yetkili Kullanıcılar</h3>
+    <a href="@Url.Action("NewAdmin", "User")" class="btn btn-primary">Yeni</a>
+</div>
 @if (Model.Error is not null)
 {
     <div class="alert alert-info" role="alert">@Model.Error.Code</div>
@@ -9,7 +11,7 @@
 
 @if (Model.IsSuccess)
 {
-    <div class="d-flex">
+    <div class="d-flex flex-wrap">
         @foreach (var admin in Model.Value)
         {
             <div class="admin-card">

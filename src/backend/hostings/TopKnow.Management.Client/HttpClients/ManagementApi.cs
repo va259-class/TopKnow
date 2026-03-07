@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Text;
 using System.Text.Json;
 using TopKnow.Management.Client.Helpers;
 
@@ -30,11 +31,24 @@ public class ManagementApi
 		{ 
 			PropertyNamingPolicy = JsonNamingPolicy.CamelCase 
 		};
-		return JsonSerializer.Deserialize<Result<T>>(content, jsonSettings); //TODO: value null geldiği için sayfaya yansıtılamadı
+		return JsonSerializer.Deserialize<Result<T>>(content, jsonSettings);
 	}
 
-	public Task SendPostRequest<T>(string url)
+	public async Task<Result<T>> SendPostRequest<T, R>(string url, R data)
 	{
-		return Task.CompletedTask;
-	}
+		var json = JsonSerializer.Serialize(data);
+		var payload = new StringContent(json, Encoding.UTF8, "application/json");
+		var response = await httpClient.PostAsync(url, payload);
+        if (!response.IsSuccessStatusCode)
+        {
+            return default;
+        }
+
+		var content = await response.Content.ReadAsStringAsync();
+        var jsonSettings = new JsonSerializerOptions
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        };
+        return JsonSerializer.Deserialize<Result<T>>(content, jsonSettings);
+    }
 }

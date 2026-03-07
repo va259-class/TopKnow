@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TopKnow.Management.Client.HttpClients;
 using TopKnow.Management.Client.ViewModels;
-using TopKnow.Management.Client.Helpers;
 
 namespace TopKnow.Management.Client.Controllers
 {
@@ -19,14 +18,36 @@ namespace TopKnow.Management.Client.Controllers
 			return View(admins);
 		}
 
+		//ÖDEV
 		public IActionResult Players()
 		{
 			return View();
 		}
 
+		//ÖDEV
 		public IActionResult Externals()
 		{
 			return View();
 		}
-	}
+
+		public IActionResult NewAdmin()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> CreateNewAdmin(CreateNewAdminViewModel model)
+		{
+			if (ModelState.IsValid)
+			{
+				var result = await managementApi.SendPostRequest<bool, CreateNewAdminViewModel>("api/users/create-admin", model);
+                if (result.IsSuccess)
+                {
+                    return RedirectToAction(nameof(Admins));
+                }
+                return View(nameof(NewAdmin));
+            }
+			return View(nameof(NewAdmin));
+		}
+    }
 }

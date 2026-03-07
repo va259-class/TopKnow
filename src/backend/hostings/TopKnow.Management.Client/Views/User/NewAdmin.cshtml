@@ -1,0 +1,27 @@
+﻿@model CreateNewAdminViewModel
+
+<h3>Yeni Yönetici</h3>
+
+<form method="post" action="@Url.Action("CreateNewAdmin", "User")">
+    <div class="mb-3">
+        <label asp-for="DisplayName" class="form-label">Adı Soyadı *</label>
+        <input asp-for="DisplayName" type="text" class="form-control">
+        <span asp-validation-for="DisplayName" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="EMail" class="form-label">E-posta Adresi *</label>
+        <input asp-for="EMail" type="email" class="form-control" placeholder="adi.soyadi@topknow.com">
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Parola</label>
+        <input asp-for="Password" type="password" class="form-control">
+        <span asp-validation-for="Password"  class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="password-again" class="form-label"></label>
+        <input asp-for="PasswordAgain" type="password" class="form-control">
+        <span asp-validation-for="PasswordAgain" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+</form>

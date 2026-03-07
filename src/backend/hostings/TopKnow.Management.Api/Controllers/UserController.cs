@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using TopKnow.Common.Concretes;
+using TopKnow.Modules.Management.Commands.Users;
 using TopKnow.Modules.Management.Queries.Users;
 
 namespace TopKnow.Management.Api.Controllers;
@@ -21,7 +22,15 @@ public class UserController : TopKnowController
     {
         var request = new GetPagedAdminUsersRequest(parameter);
         var result = await mediator.Send(request, cancellationToken);
-        return ToResult(result);
+        return AsResult(result);
+    }
+
+    [HttpPost("create-admin")]
+    public async Task<IActionResult> CreateAdmin([FromBody] CreateAdminUserRequestInput input, CancellationToken cancellationToken)
+    {
+        var request = new CreateAdminUserRequest(input);
+        var result = await mediator.Send(request, cancellationToken);
+        return AsResult(result);
     }
 
     [HttpGet("players")]
@@ -29,7 +38,7 @@ public class UserController : TopKnowController
     {
         var request = new GetPagedPlayersRequest(parameter);
         var result = await mediator.Send(request, cancellationToken);
-		return ToResult(result);
+		return AsResult(result);
 	}
 
     [HttpGet("external-users")]
