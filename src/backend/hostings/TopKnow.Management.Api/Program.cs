@@ -16,7 +16,8 @@ public class Program
         builder.Services.AddSwaggerGen();
         builder.Services.AddData(builder.Configuration);
         builder.Services.AddManagement();
-        builder.Services.AddSecurityHeaders(builder.Configuration);
+        builder.Services.AddSecurityHeaders(builder.Configuration)
+                        .AddJwt(builder.Configuration);
 
         var app = builder.Build();
 

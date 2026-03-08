@@ -1,4 +1,6 @@
-﻿using TopKnow.Common.Configurations;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using TopKnow.Common.Configurations;
 using TopKnow.Management.Client.HttpClients;
 
 namespace TopKnow.Management.Client.Extensions;
@@ -18,6 +20,27 @@ public static class ServiceCollectionExtensions
 			client.BaseAddress = new Uri(externalApi.ManagementApi);
 			client.DefaultRequestHeaders.Add("top-know-security-header", securitySettings.HeaderKey);
 		});
+		return services;
+	}
+
+	public static IServiceCollection AddCookieAuthentication(this IServiceCollection services, IConfiguration configuration)
+	{
+		services.AddAuthentication(options =>
+		{
+			options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+			options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+		})
+        .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+        {
+            options.LoginPath = "/Authentication/Login";
+            options.LogoutPath = "/Authentication/Logout";
+            options.AccessDeniedPath = "/Authentication/AccessDenied";
+
+            options.Cookie.HttpOnly = true;
+            options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+            options.ExpireTimeSpan = TimeSpan.FromHours(1);
+            options.SlidingExpiration = true;
+        });
 		return services;
 	}
 }

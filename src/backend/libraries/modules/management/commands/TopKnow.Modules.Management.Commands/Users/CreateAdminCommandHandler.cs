@@ -5,6 +5,7 @@ using TopKnow.Common.Enums;
 using TopKnow.Data.Context;
 using TopKnow.Entities.Main;
 using TopKnow.Modules.Common.Helpers;
+using Microsoft.AspNetCore.Identity;
 
 namespace TopKnow.Modules.Management.Commands.Users;
 
@@ -45,12 +46,17 @@ internal class CreateAdminCommandHandler : IRequestHandler<CreateAdminUserReques
         {
             return Result<bool>.Failure(new Error(ErrorCodes.ALREADY_EXISTS, request.Input.EMail));
         }
+
+        var id = Guid.NewGuid();
+        var hasher = new PasswordHasher<object>();
+        var password = hasher.HashPassword(id, request.Input.Password);
+
         var user = new User
         {
-            Id = Guid.NewGuid(),
+            Id = id,
             DisplayName = request.Input.DisplayName,
             Mail = request.Input.EMail,
-            Password = request.Input.Password,
+            Password = password,
             Type = UserType.Admin
         };
 

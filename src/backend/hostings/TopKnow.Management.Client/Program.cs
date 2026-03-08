@@ -1,5 +1,5 @@
 using TopKnow.Management.Client.Extensions;
-using TopKnow.Management.Client.HttpClients;
+using TopKnow.Management.Client.Middlewares;
 
 namespace TopKnow.Management.Client
 {
@@ -9,7 +9,9 @@ namespace TopKnow.Management.Client
         {
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddControllersWithViews();
-            builder.Services.AddManagementApi(builder.Configuration);
+            builder.Services.AddManagementApi(builder.Configuration)
+                            .AddCookieAuthentication(builder.Configuration);
+            
             var app = builder.Build();
             if (!app.Environment.IsDevelopment())
             {
@@ -20,6 +22,8 @@ namespace TopKnow.Management.Client
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseMiddleware<CheckUserAuthenticationMiddleware>();
             app.UseAuthorization();
             app.MapControllerRoute(
                 name: "default",

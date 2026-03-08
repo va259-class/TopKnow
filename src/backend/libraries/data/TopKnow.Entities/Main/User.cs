@@ -11,7 +11,7 @@ public class User : EntityBase
     [MaxLength(32)]
     [Required]
     public string Mail { get; set; }
-    [MaxLength(64)]
+    [MaxLength(128)]
     [Required]
     public string Password { get; set; }
     [MaxLength(32)]
