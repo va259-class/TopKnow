@@ -1,0 +1,44 @@
+﻿<nav id="sidebar" class="sidebar js-sidebar">
+	<div class="sidebar-content js-simplebar">
+		<a class="sidebar-brand" href="@Url.Action("Index", "Home")">
+			<span class="align-middle">TopKnow Admin</span>
+		</a>
+
+		<ul class="sidebar-nav">
+			<li class="sidebar-item active">
+				<a class="sidebar-link" href="@Url.Action("Index", "Home")">
+					<i class="align-middle" data-feather="home"></i> <span class="align-middle">Ana Sayfa</span>
+				</a>
+			</li>
+
+
+			<li class="sidebar-header">
+				Yönetim
+			</li>
+
+			<li class="sidebar-item">
+				<a class="sidebar-link" href="@Url.Action("Admins","User")">
+					<i class="align-middle" data-feather="user-check"></i> <span class="align-middle">Yetkili Kullanıcılar</span>
+				</a>
+			</li>
+			<li class="sidebar-item">
+				<a class="sidebar-link" href="@Url.Action("Players","User")">
+					<i class="align-middle" data-feather="users"></i> <span class="align-middle">Oyuncular</span>
+				</a>
+			</li>
+			<li class="sidebar-item">
+				<a class="sidebar-link" href="@Url.Action("Externals","User")">
+					<i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">API Kullanıcıları</span>
+				</a>
+			</li>
+			<li class="sidebar-header">
+				Linkler
+			</li>
+			<li class="sidebar-item">
+				<a class="sidebar-link" href="@Url.Action("Privacy", "Home")">
+					<i class="align-middle" data-feather="shield"></i> <span class="align-middle">Gizlilik Politikası</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</nav>

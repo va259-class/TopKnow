@@ -76,6 +76,7 @@ internal class LoginRequestHandler : IRequestHandler<LoginRequest, Result<LoginR
             SigningCredentials = credentials
         };
 
+        // Burada bir de refresh token olursa kullanıcının sürekli authorized olmasına destek oluruz
         var handler = new JwtSecurityTokenHandler();
         var token = handler.CreateToken(tokenDescriptor);
         var jwtToken = handler.WriteToken(token);

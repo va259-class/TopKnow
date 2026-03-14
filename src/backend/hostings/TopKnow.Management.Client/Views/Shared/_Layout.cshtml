@@ -17,180 +17,22 @@
 
 <body>
 	<div class="wrapper">
-		<nav id="sidebar" class="sidebar js-sidebar">
-			<div class="sidebar-content js-simplebar">
-				<a class="sidebar-brand" href="@Url.Action("Index", "Home")">
-					<span class="align-middle">TopKnow Admin</span>
-				</a>
-
-				<ul class="sidebar-nav">
-					<li class="sidebar-item active">
-						<a class="sidebar-link" href="@Url.Action("Index", "Home")">
-							<i class="align-middle" data-feather="home"></i> <span class="align-middle">Ana Sayfa</span>
-						</a>
-					</li>
-
-
-					<li class="sidebar-header">
-						Yönetim
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="@Url.Action("Admins","User")">
-							<i class="align-middle" data-feather="user-check"></i> <span class="align-middle">Yetkili Kullanıcılar</span>
-						</a>
-					</li>
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="@Url.Action("Players","User")">
-							<i class="align-middle" data-feather="users"></i> <span class="align-middle">Oyuncular</span>
-						</a>
-					</li>
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="@Url.Action("Externals","User")">
-							<i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">API Kullanıcıları</span>
-						</a>
-					</li>
-					<li class="sidebar-header">
-						Linkler
-					</li>
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="@Url.Action("Privacy", "Home")">
-							<i class="align-middle" data-feather="shield"></i> <span class="align-middle">Gizlilik Politikası</span>
-						</a>
-					</li>
-				</ul>
-			</div>
-		</nav>
-
+		@{ await Html.RenderPartialAsync("Partials/Menu"); }
 		<div class="main">
 			<nav class="navbar navbar-expand navbar-light navbar-bg">
 				<a class="sidebar-toggle js-sidebar-toggle">
 					<i class="hamburger align-self-center"></i>
 				</a>
-
-				<div class="navbar-collapse collapse">
-					<ul class="navbar-nav navbar-align">
-						<li class="nav-item dropdown">
-							<a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" data-bs-toggle="dropdown">
-								<div class="position-relative">
-									<i class="align-middle" data-feather="bell"></i>
-									<span class="indicator">4</span>
-								</div>
-							</a>
-							<div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" aria-labelledby="alertsDropdown">
-								<div class="dropdown-menu-header">
-									4 Yeni Bildirim
-								</div>
-								<div class="list-group">
-									<a href="#" class="list-group-item">
-										<div class="row g-0 align-items-center">
-											<div class="col-2">
-												<i class="text-danger" data-feather="alert-circle"></i>
-											</div>
-											<div class="col-10">
-												<div class="text-dark">Kritik Uyarı</div>
-												<div class="text-muted small mt-1">Kritik uyarı mesajı.</div>
-												<div class="text-muted small mt-1">30 dk önce</div>
-											</div>
-										</div>
-									</a>
-									<a href="#" class="list-group-item">
-										<div class="row g-0 align-items-center">
-											<div class="col-2">
-												<i class="text-warning" data-feather="bell"></i>
-											</div>
-											<div class="col-10">
-												<div class="text-dark">Normal Uyarı</div>
-												<div class="text-muted small mt-1">Normal uyarı içeriği.</div>
-												<div class="text-muted small mt-1">2 saat önce</div>
-											</div>
-										</div>
-									</a>
-									<a href="#" class="list-group-item">
-										<div class="row g-0 align-items-center">
-											<div class="col-2">
-												<i class="text-primary" data-feather="home"></i>
-											</div>
-											<div class="col-10">
-												<div class="text-dark">Bilgilendirme</div>
-												<div class="text-muted small mt-1">5 saat önce</div>
-											</div>
-										</div>
-									</a>
-									<a href="#" class="list-group-item">
-										<div class="row g-0 align-items-center">
-											<div class="col-2">
-												<i class="text-success" data-feather="user-plus"></i>
-											</div>
-											<div class="col-10">
-												<div class="text-dark">Başarılı Bildirimi</div>
-												<div class="text-muted small mt-1">Başarılı bildirimi içeriği.</div>
-												<div class="text-muted small mt-1">14 saat önce</div>
-											</div>
-										</div>
-									</a>
-								</div>
-								<div class="dropdown-menu-footer">
-									<a href="#" class="text-muted">Tümünü Göster</a>
-								</div>
-							</div>
-						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
-								<i class="align-middle" data-feather="settings"></i>
-							</a>
-
-							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-								<img src="/img/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Can Perk" /> <span class="text-dark">Can Perk</span>
-							</a>
-							<div class="dropdown-menu dropdown-menu-end">
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Kullanıcı Profili</a>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="briefcase"></i> Gizlilik</a>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="settings"></i> Ayarlar</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#">Çıkış Yap</a>
-							</div>
-						</li>
-					</ul>
-				</div>
+				@{ await Html.RenderPartialAsync("Partials/TopRight"); }
 			</nav>
-
 			<main class="content">
 				<div class="container-fluid p-0">
 					@RenderBody()
 				</div>
 			</main>
-
-			<footer class="footer">
-				<div class="container-fluid">
-					<div class="row text-muted">
-						<div class="col-6 text-start">
-							<p class="mb-0">
-								<a class="text-muted" href="#" target="_blank"><strong>TopKnow</strong></a> &copy;
-							</p>
-						</div>
-						<div class="col-6 text-end">
-							<ul class="list-inline">
-								<li class="list-inline-item">
-									<a class="text-muted" href="#" target="_blank">Destek</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="text-muted" href="#" target="_blank">Yardım Merkezi</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="text-muted" href="#" target="_blank">Gizlilik Politikası</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="text-muted" href="#" target="_blank">Kullnım Şartları</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</footer>
+			@{ await Html.RenderPartialAsync("Partials/Footer"); }
 		</div>
 	</div>
-
 	<script src="/js/app.js"></script>
 </body>
 
