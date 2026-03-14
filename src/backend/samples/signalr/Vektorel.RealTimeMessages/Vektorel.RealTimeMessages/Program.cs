@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Http.Connections;
+using Vektorel.RealTimeMessages.Hubs;
+
 namespace Vektorel.RealTimeMessages
 {
 	public class Program
@@ -6,16 +9,18 @@ namespace Vektorel.RealTimeMessages
 		{
 			var builder = WebApplication.CreateBuilder(args);
 
-			// Add services to the container.
 			builder.Services.AddControllersWithViews();
+			builder.Services.AddSignalR()
+							.AddJsonProtocol(config =>
+							{
+								config.PayloadSerializerOptions.PropertyNamingPolicy = null;
+							});
 
 			var app = builder.Build();
 
-			// Configure the HTTP request pipeline.
 			if (!app.Environment.IsDevelopment())
 			{
 				app.UseExceptionHandler("/Home/Error");
-				// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
 				app.UseHsts();
 			}
 
@@ -29,6 +34,10 @@ namespace Vektorel.RealTimeMessages
 			app.MapControllerRoute(
 				name: "default",
 				pattern: "{controller=Home}/{action=Index}/{id?}");
+			app.MapHub<HotelHub>("/hub", options =>
+			{
+				options.Transports = HttpTransportType.WebSockets | HttpTransportType.LongPolling;
+			});
 
 			app.Run();
 		}
