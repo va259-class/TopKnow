@@ -1,0 +1,45 @@
+@model EditQuestionViewModel
+@{
+	var types = ViewBag.Types as List<QuestionTypeItemViewModel> ?? new List<QuestionTypeItemViewModel>();
+}
+
+<h3>Soru Düzenle / Cevapları İşaretle</h3>
+
+<form method="post" action="@Url.Action("Update", "Question")">
+	<input type="hidden" asp-for="Id" />
+	<div class="mb-3">
+		<label asp-for="Title" class="form-label">Soru metni *</label>
+		<textarea asp-for="Title" class="form-control" rows="2"></textarea>
+		<span asp-validation-for="Title" class="text-danger"></span>
+	</div>
+	<div class="mb-3">
+		<label asp-for="TypeId" class="form-label">Soru tipi</label>
+		<select asp-for="TypeId" class="form-select">
+			@foreach (var t in types)
+			{
+				<option value="@t.Id" selected="@(t.Id == Model.TypeId)">@t.Name</option>
+			}
+		</select>
+	</div>
+	<fieldset class="mb-3">
+		<legend class="form-label">Cevaplar – doğru cevabı işaretleyin</legend>
+		@for (var i = 0; i < (Model.Answers?.Count ?? 2); i++)
+		{
+			var a = Model.Answers != null && i < Model.Answers.Count ? Model.Answers[i] : new AnswerItemViewModel();
+			<div class="input-group mb-2">
+				<input type="text" name="Answers[@i].Title" value="@a.Title" class="form-control" placeholder="Cevap @(i + 1)" />
+				<div class="input-group-text">
+					<input type="hidden" name="Answers[@i].IsCorrect" value="false" />
+					<label class="mb-0 me-1"><input type="checkbox" name="Answers[@i].IsCorrect" value="true" @(a.IsCorrect ? "checked" : "") /> Doğru</label>
+				</div>
+			</div>
+		}
+		<p class="text-muted small">Sadece bir cevabı doğru olarak işaretleyin.</p>
+	</fieldset>
+	<button type="submit" class="btn btn-primary">Güncelle</button>
+	<a href="@Url.Action("Index", "Question")" class="btn btn-secondary">Listeye dön</a>
+</form>
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+}

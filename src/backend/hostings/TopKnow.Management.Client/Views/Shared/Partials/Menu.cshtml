@@ -1,4 +1,4 @@
-﻿<nav id="sidebar" class="sidebar js-sidebar">
+<nav id="sidebar" class="sidebar js-sidebar">
 	<div class="sidebar-content js-simplebar">
 		<a class="sidebar-brand" href="@Url.Action("Index", "Home")">
 			<span class="align-middle">TopKnow Admin</span>
@@ -29,6 +29,19 @@
 			<li class="sidebar-item">
 				<a class="sidebar-link" href="@Url.Action("Externals","User")">
 					<i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">API Kullanıcıları</span>
+				</a>
+			</li>
+			<li class="sidebar-header">
+				Bilgi Yarışması
+			</li>
+			<li class="sidebar-item">
+				<a class="sidebar-link" href="@Url.Action("Index", "Question")">
+					<i class="align-middle" data-feather="help-circle"></i> <span class="align-middle">Sorular</span>
+				</a>
+			</li>
+			<li class="sidebar-item">
+				<a class="sidebar-link" href="@Url.Action("New", "Question")">
+					<i class="align-middle" data-feather="plus-circle"></i> <span class="align-middle">Yeni Soru</span>
 				</a>
 			</li>
 			<li class="sidebar-header">

@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 using System.Text;
 using System.Text.Json;
 using TopKnow.Management.Client.Helpers;
@@ -27,16 +27,18 @@ public class ManagementApi
 			return new Result<T> { Error = new Error("0001", "Empty Response") };
         }
         var content = await response.Content.ReadAsStringAsync();
-		var jsonSettings = new JsonSerializerOptions 
-		{ 
-			PropertyNamingPolicy = JsonNamingPolicy.CamelCase 
-		};
-		return JsonSerializer.Deserialize<Result<T>>(content, jsonSettings);
+		return JsonSerializer.Deserialize<Result<T>>(content, JsonOptions);
 	}
+
+	private static readonly JsonSerializerOptions JsonOptions = new()
+	{
+		PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+		PropertyNameCaseInsensitive = true
+	};
 
 	public async Task<Result<T>> SendPostRequest<T, R>(string url, R data)
 	{
-		var json = JsonSerializer.Serialize(data);
+		var json = JsonSerializer.Serialize(data, JsonOptions);
 		var payload = new StringContent(json, Encoding.UTF8, "application/json");
 		var response = await httpClient.PostAsync(url, payload);
         if (!response.IsSuccessStatusCode)
@@ -45,10 +47,20 @@ public class ManagementApi
         }
 
 		var content = await response.Content.ReadAsStringAsync();
-        var jsonSettings = new JsonSerializerOptions
-        {
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-        };
-        return JsonSerializer.Deserialize<Result<T>>(content, jsonSettings);
+        return JsonSerializer.Deserialize<Result<T>>(content, JsonOptions);
     }
+
+	public async Task<Result<T>> SendPutRequest<T, R>(string url, R data)
+	{
+		var json = JsonSerializer.Serialize(data, JsonOptions);
+		var payload = new StringContent(json, Encoding.UTF8, "application/json");
+		var response = await httpClient.PutAsync(url, payload);
+		if (!response.IsSuccessStatusCode)
+		{
+			return default;
+		}
+
+		var content = await response.Content.ReadAsStringAsync();
+		return JsonSerializer.Deserialize<Result<T>>(content, JsonOptions);
+	}
 }

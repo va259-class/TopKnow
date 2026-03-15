@@ -1,0 +1,53 @@
+@model Result<QuestionListViewModelWrappper>
+
+<div class="d-flex justify-content-between align-items-center">
+	<h3>Sorular</h3>
+	<a href="@Url.Action("New", "Question")" class="btn btn-primary">Yeni Soru</a>
+</div>
+
+@if (Model?.Error is not null)
+{
+	<div class="alert alert-warning" role="alert">@Model.Error.Message</div>
+}
+
+@if (Model?.IsSuccess == true && Model.Value != null)
+{
+	<div class="table-responsive mt-3">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Soru</th>
+					<th>Tip</th>
+					<th style="width:120px">İşlem</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model.Value.Questions)
+				{
+					<tr>
+						<td>@item.Title</td>
+						<td>@item.TypeName</td>
+						<td>
+							<a href="@Url.Action("Edit", "Question", new { id = item.Id })" class="btn btn-sm btn-outline-primary">Düzenle</a>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+	@if (Model.Value.Page > 1)
+	{
+		<a href="@Url.Action("Index", "Question", new { page = Model.Value.Page - 1 })">Önceki</a>
+	}
+	
+	<a href="@Url.Action("Index", "Question", new { page = Model.Value.Page + 1 })">Sonraki</a>
+	
+	@if (Model.Value.Questions.Count == 0)
+	{
+		<p class="text-muted">Henüz soru eklenmemiş. Yeni Soru ile ekleyebilirsiniz.</p>
+	}
+}
+else if (Model?.IsSuccess != true && Model?.Error == null)
+{
+	<p class="text-muted">Sorular yüklenemedi.</p>
+}

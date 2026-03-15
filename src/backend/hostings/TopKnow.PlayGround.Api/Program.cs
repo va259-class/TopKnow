@@ -1,4 +1,6 @@
 namespace TopKnow.PlayGround.Api;
+
+using TopKnow.Data.Extensions;
 using TopKnow.Modules.PlayGround.Extensions;
 
 public class Program
@@ -9,7 +11,19 @@ public class Program
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
-        builder.Services.AddPlayGround();
+		builder.Services.AddData(builder.Configuration);
+		builder.Services.AddPlayGround();
+
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowAll",
+                builder =>
+                {
+                    builder.AllowAnyOrigin()
+                           .AllowAnyMethod()
+                           .AllowAnyHeader();
+                });
+        });
 
         var app = builder.Build();
         if (app.Environment.IsDevelopment())
@@ -19,6 +33,7 @@ public class Program
         }
 
         app.UseHttpsRedirection();
+        app.UseCors("AllowAll");
         app.UseAuthorization();
         app.MapControllers();
         app.Run();
