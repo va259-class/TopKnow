@@ -21,9 +21,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "modules", "modules", "{E5A4
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopKnow.Common", "libraries\TopKnow.Common\TopKnow.Common.csproj", "{08687B83-2819-4167-83E1-5BD33F948DDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopKnow.Management.Client", "hostings\TopKnow.Management.Client\TopKnow.Management.Client.csproj", "{289683F1-1AA2-45B3-B0D5-A9FF178DDFEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopKnow.Management.Client", "hostings\TopKnow.Management.Client\TopKnow.Management.Client.csproj", "{289683F1-1AA2-45B3-B0D5-A9FF178DDFEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopKnow.External.Api", "hostings\TopKnow.External.Api\TopKnow.External.Api.csproj", "{DCFFC280-A549-481F-90CF-A11B1663F3F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopKnow.External.Api", "hostings\TopKnow.External.Api\TopKnow.External.Api.csproj", "{DCFFC280-A549-481F-90CF-A11B1663F3F8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "management", "management", "{D1FD2A65-F167-4A27-A74C-724C3546AAC3}"
 EndProject
@@ -31,37 +31,37 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "playground", "playground", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "external", "external", "{5E02AA9A-0777-441C-8FC8-C41E4E22A6F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopKnow.Modules.Management", "libraries\modules\management\TopKnow.Modules.Management\TopKnow.Modules.Management.csproj", "{42CC5C8F-4507-4699-8E59-9D16A5D2223B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopKnow.Modules.Management", "libraries\modules\management\TopKnow.Modules.Management\TopKnow.Modules.Management.csproj", "{42CC5C8F-4507-4699-8E59-9D16A5D2223B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "commands", "commands", "{9177B8AC-3898-4327-B936-A9EC017D6E6B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "queries", "queries", "{BAC506A3-6D22-4141-9FB3-6E4037984938}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopKnow.Modules.Management.Commands", "libraries\modules\management\commands\TopKnow.Modules.Management.Commands\TopKnow.Modules.Management.Commands.csproj", "{0B2D03B2-EC26-479A-9AD8-56B04DACB1BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopKnow.Modules.Management.Commands", "libraries\modules\management\commands\TopKnow.Modules.Management.Commands\TopKnow.Modules.Management.Commands.csproj", "{0B2D03B2-EC26-479A-9AD8-56B04DACB1BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopKnow.Modules.Management.Queries", "libraries\modules\management\queries\TopKnow.Modules.Management.Queries\TopKnow.Modules.Management.Queries.csproj", "{F55BBA65-096D-4051-ADB9-B822397DEB77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopKnow.Modules.Management.Queries", "libraries\modules\management\queries\TopKnow.Modules.Management.Queries\TopKnow.Modules.Management.Queries.csproj", "{F55BBA65-096D-4051-ADB9-B822397DEB77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopKnow.Modules.Common", "libraries\modules\TopKnow.Modules.Common\TopKnow.Modules.Common.csproj", "{DFB6918F-6F67-4EAB-ACFE-2C6F20BB69B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopKnow.Modules.Common", "libraries\modules\TopKnow.Modules.Common\TopKnow.Modules.Common.csproj", "{DFB6918F-6F67-4EAB-ACFE-2C6F20BB69B2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "commands", "commands", "{D71B9287-9C03-46AC-96EC-09D1CEF9247B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "queries", "queries", "{533554FB-54C7-4B03-989D-FB7E50A08F28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopKnow.Modules.External", "libraries\modules\external\TopKnow.Modules.External\TopKnow.Modules.External.csproj", "{9CDBD4F1-A019-4E94-858E-3728C10A40AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopKnow.Modules.External", "libraries\modules\external\TopKnow.Modules.External\TopKnow.Modules.External.csproj", "{9CDBD4F1-A019-4E94-858E-3728C10A40AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopKnow.Modules.External.Commands", "libraries\modules\external\commands\TopKnow.Modules.External.Commands\TopKnow.Modules.External.Commands.csproj", "{7CDEBDAA-8BF4-40D9-AB6A-867457E5FF85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopKnow.Modules.External.Commands", "libraries\modules\external\commands\TopKnow.Modules.External.Commands\TopKnow.Modules.External.Commands.csproj", "{7CDEBDAA-8BF4-40D9-AB6A-867457E5FF85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopKnow.Modules.External.Queries", "libraries\modules\external\queries\TopKnow.Modules.External.Queries\TopKnow.Modules.External.Queries.csproj", "{51216757-B133-4F56-8125-831E6BFBC339}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopKnow.Modules.External.Queries", "libraries\modules\external\queries\TopKnow.Modules.External.Queries\TopKnow.Modules.External.Queries.csproj", "{51216757-B133-4F56-8125-831E6BFBC339}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "commands", "commands", "{44F6D652-5841-45B6-A7E2-8D53D547E347}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "queries", "queries", "{951CE9B3-3D04-44C3-A236-CF0B19FB4B04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopKnow.Modules.PlayGround", "libraries\modules\playground\TopKnow.Modules.PlayGround\TopKnow.Modules.PlayGround.csproj", "{EA04116A-5C4A-4E9B-9792-107A4198C583}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopKnow.Modules.PlayGround", "libraries\modules\playground\TopKnow.Modules.PlayGround\TopKnow.Modules.PlayGround.csproj", "{EA04116A-5C4A-4E9B-9792-107A4198C583}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopKnow.Modules.PlayGround.Commands", "libraries\modules\playground\commands\TopKnow.Modules.PlayGround.Commands\TopKnow.Modules.PlayGround.Commands.csproj", "{C79F4A63-E39F-4BB9-B7BE-34D8FBC7CF20}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopKnow.Modules.PlayGround.Commands", "libraries\modules\playground\commands\TopKnow.Modules.PlayGround.Commands\TopKnow.Modules.PlayGround.Commands.csproj", "{C79F4A63-E39F-4BB9-B7BE-34D8FBC7CF20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopKnow.Modules.PlayGround.Queries", "libraries\modules\playground\queries\TopKnow.Modules.PlayGround.Queries\TopKnow.Modules.PlayGround.Queries.csproj", "{C64D0F1A-101A-4E75-AEA9-84A455291B37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopKnow.Modules.PlayGround.Queries", "libraries\modules\playground\queries\TopKnow.Modules.PlayGround.Queries\TopKnow.Modules.PlayGround.Queries.csproj", "{C64D0F1A-101A-4E75-AEA9-84A455291B37}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
