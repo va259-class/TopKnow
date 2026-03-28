@@ -29,7 +29,7 @@ namespace TopKnow.PlayGround.Api.Controllers
 		}
 
 		[HttpPost("forgot-password")]
-		public async Task<IActionResult> ForgatPassword(CancellationToken cancellationToken)
+		public async Task<IActionResult> ForgotPassword(CancellationToken cancellationToken)
 		{
 			return Ok();
 		}

@@ -12,6 +12,7 @@
   "dependencies": {
     "autoprefixer": "^10.4.27",
     "axios": "^1.13.6",
+    "@microsoft/signalr": "10.0.0",
     "lucide-vue-next": "^0.577.0",
     "pinia": "^3.0.4",
     "postcss": "^8.5.8",

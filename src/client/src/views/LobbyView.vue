@@ -1,6 +1,7 @@
 <script>
 import { mapStores } from 'pinia'
 import { useQuizStore } from '@/stores/quiz'
+import { useHubStore } from '@/stores/hub'
 import { Loader2 } from 'lucide-vue-next'
 
 export default {
@@ -14,19 +15,20 @@ export default {
     }
   },
   computed: {
-    ...mapStores(useQuizStore),
+    ...mapStores(useQuizStore, useHubStore),
   },
   async mounted() {
+    await this.hubStore.connect()
+    this.hubStore.join()
     // Fetch questions from API immediately
-    await this.quizStore.fetchQuestions()
-
+    //await this.quizStore.fetchQuestions()
     // Artificial delay for "Lobby" feel
-    setTimeout(() => {
-      this.isLoading = false
-      // Start game logic
-      this.quizStore.startGame()
-      this.$router.push('/quiz')
-    }, 3000)
+    // setTimeout(() => {
+    //   this.isLoading = false
+    //   // Start game logic
+    //   this.quizStore.startGame()
+    //   this.$router.push('/quiz')
+    // }, 3000)
   },
 }
 </script>

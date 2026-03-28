@@ -13,16 +13,21 @@ public class Program
         builder.Services.AddSwaggerGen();
 		builder.Services.AddData(builder.Configuration);
 		builder.Services.AddPlayGround();
+        builder.Services.AddSignalR();
 
         builder.Services.AddCors(options =>
         {
-            options.AddPolicy("AllowAll",
+            if (builder.Environment.IsDevelopment())
+            {
+                options.AddPolicy(builder.Environment.EnvironmentName,
                 builder =>
                 {
-                    builder.AllowAnyOrigin()
+                    builder.WithOrigins("http://localhost:5173", "http://192.168.254.24:5173")
                            .AllowAnyMethod()
-                           .AllowAnyHeader();
+                           .AllowAnyHeader()
+                           .AllowCredentials();
                 });
+            }
         });
 
         var app = builder.Build();
@@ -33,9 +38,10 @@ public class Program
         }
 
         app.UseHttpsRedirection();
-        app.UseCors("AllowAll");
+        app.UseCors(builder.Environment.EnvironmentName);
         app.UseAuthorization();
         app.MapControllers();
+        app.MapHub<GameHub>("/gh");
         app.Run();
     }
 }

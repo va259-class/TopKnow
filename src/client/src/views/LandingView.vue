@@ -1,15 +1,23 @@
 <script>
 import { PlusCircle } from 'lucide-vue-next'
+import { mapStores } from 'pinia'
+import { useHubStore } from '@/stores/hub'
 
 export default {
   name: 'LandingView',
   components: {
     PlusCircle,
   },
+  async mounted() {
+    await this.hubStore.connect()
+  },
   methods: {
     startLobby() {
       this.$router.push('/lobby')
     },
+  },
+  computed: {
+    ...mapStores(useHubStore),
   },
 }
 </script>
@@ -48,6 +56,11 @@ export default {
         <span class="tracking-wide">ARENAYA GİR</span>
         <PlusCircle class="w-6 h-6 group-hover:rotate-90 transition-transform duration-300" />
       </button>
+      <div class="mt-12">
+        <span class="via-white/10"
+          >Arena'da Bekleyen: <b>{{ hubStore.lobbyUserCount }}</b></span
+        >
+      </div>
     </div>
   </div>
 </template>
