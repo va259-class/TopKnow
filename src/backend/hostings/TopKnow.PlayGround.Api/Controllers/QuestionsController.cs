@@ -1,11 +1,13 @@
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TopKnow.Modules.PlayGround.Queries.Questions;
 
 namespace TopKnow.PlayGround.Api.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Authorize]
+[Route("api/questions")]
 public class QuestionsController : ControllerBase
 {
     private readonly IMediator mediator;

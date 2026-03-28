@@ -2,22 +2,33 @@
 import { PlusCircle } from 'lucide-vue-next'
 import { mapStores } from 'pinia'
 import { useHubStore } from '@/stores/hub'
+import { useAuthStore } from '@/stores/auth'
 
 export default {
   name: 'LandingView',
   components: {
     PlusCircle,
   },
+  computed: {
+    ...mapStores(useHubStore, useAuthStore),
+  },
   async mounted() {
-    await this.hubStore.connect()
+    if (this.authStore.isAuthenticated) {
+      try {
+        await this.hubStore.connect()
+      } catch (e) {
+        console.error(e)
+      }
+    }
   },
   methods: {
     startLobby() {
+      if (!this.authStore.isAuthenticated) {
+        this.$router.push({ name: 'login', query: { redirect: '/lobby' } })
+        return
+      }
       this.$router.push('/lobby')
     },
-  },
-  computed: {
-    ...mapStores(useHubStore),
   },
 }
 </script>
@@ -43,6 +54,31 @@ export default {
       >
         Arenaya girin. Bilginizi test edin.<br />Liderlik tablosuna hükmedin.
       </p>
+
+      <div class="relative z-10 flex flex-wrap items-center justify-center gap-4 mb-8">
+        <router-link
+          v-if="!authStore.isAuthenticated"
+          to="/login"
+          class="text-text-light/90 underline-offset-4 hover:underline"
+        >
+          Giriş yap
+        </router-link>
+        <router-link
+          v-if="!authStore.isAuthenticated"
+          to="/register"
+          class="text-text-light/90 underline-offset-4 hover:underline"
+        >
+          Kayıt ol
+        </router-link>
+        <button
+          v-else
+          type="button"
+          class="text-sm text-text-light/70"
+          @click="authStore.logout()"
+        >
+          Çıkış ({{ authStore.displayName }})
+        </button>
+      </div>
 
       <button
         @click="startLobby"

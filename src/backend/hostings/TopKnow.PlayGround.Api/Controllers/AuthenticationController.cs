@@ -1,4 +1,5 @@
-﻿using MediatR;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TopKnow.Modules.PlayGround.Commands.Authentication;
 
@@ -14,6 +15,8 @@ namespace TopKnow.PlayGround.Api.Controllers
         {
 			this.mediator = mediator;
 		}
+
+		[AllowAnonymous]
         [HttpPost("register")]
 		public async Task<IActionResult> Register([FromBody] RegisterUserInput input, CancellationToken cancellationToken)
 		{
@@ -22,14 +25,17 @@ namespace TopKnow.PlayGround.Api.Controllers
 			return AsResult(result);
 		}
 
+		[AllowAnonymous]
 		[HttpPost("login")]
-		public async Task<IActionResult> Login(CancellationToken cancellationToken)
+		public async Task<IActionResult> Login([FromBody] LoginUserInput input, CancellationToken cancellationToken)
 		{
-			return Ok();
+			var result = await mediator.Send(new LoginUserRequest(input), cancellationToken);
+			return AsResult(result);
 		}
 
+		[AllowAnonymous]
 		[HttpPost("forgot-password")]
-		public async Task<IActionResult> ForgotPassword(CancellationToken cancellationToken)
+		public IActionResult ForgotPassword()
 		{
 			return Ok();
 		}

@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\TopKnow.Common\TopKnow.Common.csproj" />
     <ProjectReference Include="..\..\..\TopKnow.Modules.Common\TopKnow.Modules.Common.csproj" />
   </ItemGroup>
 

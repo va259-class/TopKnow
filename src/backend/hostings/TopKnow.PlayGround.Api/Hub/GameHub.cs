@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.SignalR;
 using System.Collections.Concurrent;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.SignalR;
 
 namespace TopKnow.PlayGround.Api
 {
+    [Authorize]
     public class GameHub : Hub
     {
         public static ConcurrentDictionary<string, Guid> waitingPlayers = new ConcurrentDictionary<string, Guid>();
@@ -10,7 +13,8 @@ namespace TopKnow.PlayGround.Api
 
         public Task Join()
         {
-            waitingPlayers.TryAdd(Context.ConnectionId, Guid.NewGuid());
+            var id = Context.User.Claims.FirstOrDefault(f => f.Type == ClaimTypes.NameIdentifier);
+            waitingPlayers.TryAdd(Context.ConnectionId, Guid.Parse(id.Value));
             return Clients.All.SendAsync("LobbyChanged", waitingPlayers.Count, CancellationToken.None);
         }
 
