@@ -8,6 +8,13 @@ export const useHubStore = defineStore('hub', {
   state: () => ({
     connection: null,
     lobbyUserCount: 0,
+    joined: false,
+    opponents : [],
+    opponent: {
+      id: null,
+      displayName: null
+    },
+    opponentReady: false
   }),
   actions: {
     async connect() {
@@ -16,7 +23,7 @@ export const useHubStore = defineStore('hub', {
         throw new Error('SignalR için oturum açmanız gerekir.')
       }
 
-      await this.disconnect()
+      await this.disconnect();
 
       const url = `${getApiBaseUrl()}/gh`
       this.connection = new signalR.HubConnectionBuilder()
@@ -24,9 +31,9 @@ export const useHubStore = defineStore('hub', {
           accessTokenFactory: () => auth.token,
         })
         .withAutomaticReconnect()
-        .build()
-      registerHubListeners(this.connection, this)
-      await this.connection.start()
+        .build();
+      registerHubListeners(this.connection, this);
+      await this.connection.start();
     },
 
     async disconnect() {
@@ -36,19 +43,38 @@ export const useHubStore = defineStore('hub', {
         } catch {
           /* ignore */
         }
-        this.connection = null
-        this.lobbyUserCount = 0
+        this.connection = null;
+        this.lobbyUserCount = 0;
       }
     },
 
     join() {
       if (this.connection) {
-        this.connection.invoke('Join')
+        this.connection.invoke('Join');
       }
     },
 
     lobbyUserCountChanged(count) {
-      this.lobbyUserCount = count
+      this.lobbyUserCount = count;
     },
+
+    joinedToLobby() {
+      this.joined = true;
+    },
+
+    opponentsAssigned(players) {
+      this.opponents = players;
+    },
+    clearOpponents() {
+      this.opponents = [];
+    },
+    askForChallenge(id){
+      this.connection.invoke("AskForChallenge", id);
+    },
+    challengeRequested(id, displayName) {
+      this.opponent.id = id;
+      this.opponent.displayName = displayName;
+      this.opponentReady = true;
+    }
   },
 })

@@ -40,11 +40,10 @@ internal class LoginUserCommandHandler : IRequestHandler<LoginUserRequest, Resul
 
 	public async Task<Result<LoginUserOutput>> Handle(LoginUserRequest request, CancellationToken cancellationToken)
 	{
-		var user = await context.Users.FirstOrDefaultAsync(
-			f => !f.IsDeleted &&
-				 f.Mail == request.Input.Mail &&
-				 f.Type == UserType.User,
-			cancellationToken);
+		var user = await context.Users.FirstOrDefaultAsync(f => !f.IsDeleted &&
+														     	 f.Mail == request.Input.Mail &&
+														   	     f.Type == UserType.User,
+														   cancellationToken);
 
 		if (user is null)
 		{

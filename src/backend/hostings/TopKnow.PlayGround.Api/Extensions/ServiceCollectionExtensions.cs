@@ -23,31 +23,31 @@ public static class ServiceCollectionExtensions
 		var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authSettings.Key));
 
 		services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-			.AddJwtBearer(options =>
-			{
-				options.TokenValidationParameters = new TokenValidationParameters
+				.AddJwtBearer(options =>
 				{
-					ValidateIssuer = false,
-					ValidateAudience = false,
-					ValidateIssuerSigningKey = true,
-					IssuerSigningKey = signingKey,
-					ClockSkew = TimeSpan.Zero,
-				};
-				options.Events = new JwtBearerEvents
-				{
-					OnMessageReceived = context =>
+					options.TokenValidationParameters = new TokenValidationParameters
 					{
-						var accessToken = context.Request.Query["access_token"];
-						var path = context.HttpContext.Request.Path;
-						if (!string.IsNullOrEmpty(accessToken) && path.StartsWithSegments(SignalRHubPath))
+						ValidateIssuer = false,
+						ValidateAudience = false,
+						ValidateIssuerSigningKey = true,
+						IssuerSigningKey = signingKey,
+						ClockSkew = TimeSpan.Zero,
+					};
+					options.Events = new JwtBearerEvents
+					{
+						OnMessageReceived = context =>
 						{
-							context.Token = accessToken;
-						}
+							var accessToken = context.Request.Query["access_token"];
+							var path = context.HttpContext.Request.Path;
+							if (!string.IsNullOrEmpty(accessToken) && path.StartsWithSegments(SignalRHubPath))
+							{
+								context.Token = accessToken;
+							}
 
-						return Task.CompletedTask;
-					},
-				};
-			});
+							return Task.CompletedTask;
+						},
+					};
+				});
 
 		services.AddAuthorization();
 		return services;
