@@ -75,6 +75,18 @@ export const useHubStore = defineStore('hub', {
       this.opponent.id = id;
       this.opponent.displayName = displayName;
       this.opponentReady = true;
+    },
+    acceptChallenge() {
+      this.connection.invoke("AcceptChallenge", this.opponent.id);
+    },
+    rejectChallenge(){
+      this.opponentReady = false;
+      this.opponent.id = null;
+      this.opponent.displayName = null;
+    },
+    gameStarted() {
+      debugger;
+      this.$router.push('/quiz');
     }
   },
 })

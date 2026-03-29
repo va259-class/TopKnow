@@ -30,6 +30,13 @@ export default {
       }
       this.hubStore.askForChallenge(id);
       this.waitingForOpponent = true;
+    },
+    acceptChallenge() {
+      debugger;
+      this.hubStore.acceptChallenge();
+    },
+    rejectChallenge() {
+      this.hubStore.rejectChallenge();
     }
   },
   watch: {
@@ -38,6 +45,8 @@ export default {
         this.showChallengeRequest = true;
         let audio = new Audio("/sounds/newrequest.wav");
         audio.play();
+      } else {
+        this.showChallengeRequest = false;
       }
     }
   }
@@ -57,8 +66,10 @@ export default {
           <div class="mb-5">
             <span>{{ hubStore.opponent.displayName }} sana meydan okuyor!</span>
           </div>
-          <button class="p-3 mr-3 rounded-xl bg-primary hover:bg-primary/90 text-text-light">Kabul Et</button>
-          <button class="p-3 rounded-xl bg-danger hover:bg-primary/90 text-text-light">Reddet</button>
+          <button class="p-3 mr-3 rounded-xl bg-primary hover:bg-primary/90 text-text-light"
+            @click="acceptChallenge">Kabul Et</button>
+          <button class="p-3 rounded-xl bg-danger hover:bg-primary/90 text-text-light"
+            @click="rejectChallenge">Reddet</button>
         </div>
       </transition>
       <div class="relative z-10">

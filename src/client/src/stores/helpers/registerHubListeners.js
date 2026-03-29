@@ -14,4 +14,8 @@ export function registerHubListeners(connection, store) {
   connection.on("ChallengeRequested", (id, displayName) => {
     store.challengeRequested(id, displayName);
   })
+
+  connection.on("GameStarted", () => {
+    store.gameStarted();
+  })
 }
