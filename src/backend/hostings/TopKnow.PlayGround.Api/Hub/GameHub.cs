@@ -5,6 +5,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 using TopKnow.Modules.PlayGround.Commands.Matches;
+using TopKnow.Modules.PlayGround.Queries.Questions;
 
 namespace TopKnow.PlayGround.Api;
 
@@ -27,6 +28,8 @@ public class GameHub : Hub
     {
         this.mediator = mediator;
     }
+
+    private static ConcurrentDictionary<Guid, Guid> waitingForMatch = new ConcurrentDictionary<Guid, Guid>();
 
     public static ConcurrentDictionary<Guid, ConnectionInfo> waitingPlayers = new ConcurrentDictionary<Guid, ConnectionInfo>();
     public static ConcurrentDictionary<Guid, ConnectionInfo> players = new ConcurrentDictionary<Guid, ConnectionInfo>();
@@ -79,10 +82,36 @@ public class GameHub : Hub
             players.TryAdd(opponentId, opponent);
             players.TryAdd(currentUserId, currentUser);
 
-            await mediator.Send(new CreateMatchRequest(currentUserId, opponentId));
-            // game id iyi olabilir
-            await Clients.Client(opponent.ConnectionId).SendAsync("GameStarted");
-            await Clients.Caller.SendAsync("GameStarted");
+            var match = await mediator.Send(new CreateMatchRequest(currentUserId, opponentId));
+
+            if (match.IsSuccess)
+            {
+                await Clients.Client(opponent.ConnectionId).SendAsync("GameStarted", match.Value);
+                await Clients.Caller.SendAsync("GameStarted", match.Value);
+            }
+        }
+    }
+
+    public async Task UserIsReady(Guid id)
+    {
+        //Daha önce rakiplerden biri ilk defa hazýrým dediyse
+        if (!waitingForMatch.ContainsKey(id))
+        {
+            GetUserInformation();
+            waitingForMatch.TryAdd(id, currentUserId);
+            return;
+        }
+
+        waitingForMatch.TryRemove(id, out var _);
+
+        var question = await mediator.Send(new GetRandomQuestionsRequest(id), CancellationToken.None);
+        if (question.IsSuccess)
+        {
+            var p1 = players.TryGetValue(question.Value.LeftUserId, out var pc1);
+            var p2 = players.TryGetValue(question.Value.RightUserId, out var pc2);
+
+            await Clients.Client(pc1.ConnectionId).SendAsync("LoadQuestion", question.Value.QuestionId);
+            await Clients.Client(pc2.ConnectionId).SendAsync("LoadQuestion", question.Value.QuestionId);
         }
     }
 
@@ -99,6 +128,8 @@ public class GameHub : Hub
             waitingPlayers.Remove(currentUserId, out connectionId);
             await Clients.All.SendAsync("LobbyChanged", waitingPlayers.Count);
         }
+
+        players.TryRemove(currentUserId, out _);
         await base.OnDisconnectedAsync(exception);
     }
 

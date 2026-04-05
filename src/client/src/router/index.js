@@ -33,7 +33,7 @@ const router = createRouter({
       meta: { requiresAuth: true },
     },
     {
-      path: '/quiz',
+      path: '/quiz/:id',
       name: 'quiz',
       component: QuizView,
       meta: { requiresAuth: true },

@@ -1,16 +1,12 @@
 ﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TopKnow.Data.Context;
 using TopKnow.Entities.Game;
 using TopKnow.Modules.Common.Helpers;
+using Microsoft.EntityFrameworkCore;
 
 namespace TopKnow.Modules.PlayGround.Commands.Matches;
 
-public class CreateMatchRequest : IRequest<Result<bool>>
+public class CreateMatchRequest : IRequest<Result<Guid>>
 {
     public CreateMatchRequest(Guid requesterId, Guid challengerId)
     {
@@ -22,7 +18,7 @@ public class CreateMatchRequest : IRequest<Result<bool>>
     public Guid ChallengerId { get; }
 }
 
-internal class CreateMatchCommandHandler : IRequestHandler<CreateMatchRequest, Result<bool>>
+internal class CreateMatchCommandHandler : IRequestHandler<CreateMatchRequest, Result<Guid>>
 {
     private readonly TopKnowContext context;
 
@@ -30,17 +26,26 @@ internal class CreateMatchCommandHandler : IRequestHandler<CreateMatchRequest, R
     {
         this.context = context;
     }
-    public async Task<Result<bool>> Handle(CreateMatchRequest request, CancellationToken cancellationToken)
+    public async Task<Result<Guid>> Handle(CreateMatchRequest request, CancellationToken cancellationToken)
     {
-        return Result<bool>.Success(true);
+        var requesterPlayerId = await context.Players.Where(f => f.UserId == request.RequesterId)
+                                               .Select(s => s.Id)
+                                               .FirstOrDefaultAsync(cancellationToken);
+
+        var challengerPlayerId = await context.Players.Where(f => f.UserId == request.ChallengerId)
+                                               .Select(s => s.Id)
+                                               .FirstOrDefaultAsync(cancellationToken);
 
         var match = new Match
         {
-            //Doldurulacak
+            Id = Guid.NewGuid(),
+            LeftPlayerId = requesterPlayerId,
+            RightPlayerId = challengerPlayerId,
+            RoundCount = 1
         };
 
         context.Matches.Add(match);
         await context.SaveChangesAsync(cancellationToken);
-        return Result<bool>.Success(true);
+        return Result<Guid>.Success(match.Id);
     }
 }

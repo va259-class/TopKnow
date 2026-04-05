@@ -44,17 +44,17 @@ export default {
     return unwrapResult(data)
   },
 
-  async register(mail, displayName, password) {
+  async register(mail, displayName, nickName, password) {
     const { data } = await apiClient.post('/api/authentication/register', {
       mail,
       displayName,
+      nickName,
       password,
     })
     return unwrapResult(data)
   },
 
-  async getQuestions(count = 5) {
-    const { data } = await apiClient.get('/api/questions', { params: { count } })
-    return data
+  async getQuestion(id) {
+    return await apiClient.get('/api/questions/' + id)
   },
 }

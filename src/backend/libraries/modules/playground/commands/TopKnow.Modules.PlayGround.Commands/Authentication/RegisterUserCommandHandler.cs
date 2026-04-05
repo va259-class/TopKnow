@@ -3,12 +3,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TopKnow.Common.Enums;
 using TopKnow.Data.Context;
+using TopKnow.Entities.Game;
 using TopKnow.Entities.Main;
 using TopKnow.Modules.Common.Helpers;
 
 namespace TopKnow.Modules.PlayGround.Commands.Authentication;
 
-public record RegisterUserInput(string Mail, string DisplayName, string Password);
+public record RegisterUserInput(string Mail, string DisplayName, string NickName, string Password);
 
 public class RegisterUserRequest : IRequest<Result<bool>>
 {
@@ -40,7 +41,7 @@ internal class RegisterUserCommandHandler : IRequestHandler<RegisterUserRequest,
 		var id = Guid.NewGuid();
 		var hasher = new PasswordHasher<object>();
 
-		var entity = new User
+		var user = new User
 		{
 			Id = id,
 			Mail = request.Input.Mail,
@@ -49,8 +50,16 @@ internal class RegisterUserCommandHandler : IRequestHandler<RegisterUserRequest,
 			Type = UserType.User,
 		};
 
-		context.Users.Add(entity);
-		await context.SaveChangesAsync(cancellationToken);
+		var player = new Player
+		{
+			Id = Guid.NewGuid(),
+			UserId = id,
+			NickName = request.Input.NickName,
+		};
+
+		context.Users.Add(user);
+		context.Players.Add(player);
+        await context.SaveChangesAsync(cancellationToken);
 
 		return Result<bool>.Success(true);
 	}

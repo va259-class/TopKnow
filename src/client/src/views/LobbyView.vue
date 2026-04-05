@@ -32,7 +32,6 @@ export default {
       this.waitingForOpponent = true;
     },
     acceptChallenge() {
-      debugger;
       this.hubStore.acceptChallenge();
     },
     rejectChallenge() {
@@ -58,8 +57,7 @@ export default {
     <div
       class="max-w-md w-full bg-surface/80 backdrop-blur-md rounded-3xl border border-white/10 p-10 text-center shadow-2xl relative overflow-hidden">
       <!-- Background subtle animated pulse -->
-      <div
-        class="absolute inset-0 bg-gradient-to-br from-primary/10 to-success/10 animate-[pulse_2s_ease-in-out_infinite]">
+      <div>
       </div>
       <transition name="bounce">
         <div class="new-request" v-if="showChallengeRequest">

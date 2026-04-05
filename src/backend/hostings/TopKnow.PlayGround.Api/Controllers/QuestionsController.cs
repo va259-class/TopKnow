@@ -17,16 +17,10 @@ public class QuestionsController : ControllerBase
         this.mediator = mediator;
     }
 
-    [HttpGet]
-    public async Task<IActionResult> Get([FromQuery] int count = 5)
+    [HttpGet("{id}")]
+    public async Task<IActionResult> Get([FromRoute] Guid id, CancellationToken cancellationToken)
     {
-        var result = await mediator.Send(new GetRandomQuestionsRequest(count));
-        
-        if (!result.IsSuccess)
-        {
-            return BadRequest(result.Error);
-        }
-
+        var result = await mediator.Send(new GetQuestionWithAnswersRequest(id), cancellationToken);
         return Ok(result.Value);
     }
 }

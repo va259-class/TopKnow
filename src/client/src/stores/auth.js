@@ -32,10 +32,7 @@ export const useAuthStore = defineStore('auth', {
 
     persist() {
       if (this.token && this.user) {
-        localStorage.setItem(
-          STORAGE_KEY,
-          JSON.stringify({ token: this.token, user: this.user }),
-        )
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({ token: this.token, user: this.user }))
       } else {
         localStorage.removeItem(STORAGE_KEY)
       }
@@ -57,9 +54,9 @@ export const useAuthStore = defineStore('auth', {
       })
     },
 
-    async register(mail, displayName, password) {
+    async register(mail, displayName, nickName, password) {
       const api = (await import('@/services/api')).default
-      await api.register(mail, displayName, password)
+      await api.register(mail, displayName, nickName, password)
     },
 
     async logout() {

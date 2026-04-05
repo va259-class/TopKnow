@@ -4,6 +4,7 @@ import api from '../services/api'
 export const useQuizStore = defineStore('quiz', {
   state: () => ({
     questions: [],
+    currentQuestion: null,
     currentQuestionIndex: 0,
     score: 0,
     isPlaying: false,
@@ -12,19 +13,19 @@ export const useQuizStore = defineStore('quiz', {
     timerInterval: null,
     selectedAnswerIndex: null,
     isAnswerLocked: false,
+    totalQuestions: 5,
     stats: {
       correct: 0,
       wrong: 0,
     },
   }),
   getters: {
-    currentQuestion: (state) => state.questions[state.currentQuestionIndex],
-    totalQuestions: (state) => state.questions.length,
     currentQuestionNumber: (state) => state.currentQuestionIndex + 1,
   },
   actions: {
-    async fetchQuestions() {
-      this.questions = await api.getQuestions()
+    async fetchQuestion(id) {
+      let question = await api.getQuestion(id)
+      this.setQuestion(question.data)
     },
     startGame() {
       this.currentQuestionIndex = 0
@@ -34,6 +35,9 @@ export const useQuizStore = defineStore('quiz', {
       this.isGameOver = false
       this.resetTurn()
       this.startTimer()
+    },
+    setQuestion(question) {
+      this.currentQuestion = question
     },
     startTimer() {
       this.stopTimer()
